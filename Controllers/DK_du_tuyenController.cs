@@ -206,7 +206,7 @@ namespace He_Thong_Tuyen_Sinh_HTHS.Controllers
                 hs.TrangThai = 1;
                 db.SaveChanges();
                 var idHS = hs.ID;
-                
+                //ahihi
                 HttpFileCollectionBase files = Request.Files;
                 for (int i = 0; i < files.Count; i++)
                 {
