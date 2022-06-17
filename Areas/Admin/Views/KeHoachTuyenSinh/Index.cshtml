@@ -1,0 +1,145 @@
+﻿
+
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutPage1.cshtml";
+}
+<div class="col-md-12">
+    <p style=" font-size: 25px;">Kế hoạch tuyển sinh</p>
+</div>
+
+<div class="col-md-12">  
+    <div class="col-md-3">
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+            Thêm mới
+        </button>
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content" style="width:1200px;margin-left:-280px;">
+                    <div class="modal-header">
+                        @*<h5 class="modal-title" id="exampleModalLabel">THÊM NGƯỜI DÙNG</h5>*@
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <link href="~/Assets/Frontend/css/file.css" rel="stylesheet" />
+                        <style>
+                            .nopadding {
+                                padding-left: 5PX !important;
+                                padding-right: 5PX !important;
+                            }
+                        </style>
+                        <div class="container" style="border:1px solid black;padding-top:14px;padding-bottom:14px;">
+                            <div class="tab-content">
+                                <div class="active tab-pane" id="activity">
+                                    <div class="col-md-12">
+                                        <p class="Ten" style="text-align:center">KẾ HOẠCH TUYỂN SINH</p>                                      
+                                        <h2 style="font-size:18px"></h2>
+                                        <div class=" col-md-6">
+                                            <div class="col-md-3">
+                                                <label>Tên kế hoạch</label>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <input class="form-control" type="text" id="txt-ten ke hoach" placeholder="..." style="max-width:unset;" />
+                                            </div>
+                                            <div class="col-md-12" style="margin-top:12px;">
+                                                <label> Chọn kỳ thi</label>
+                                                <select class="form-control custom-selectl-sm md-3" style="max-width:unset">
+                                                    <option selected class="form-control"></option>
+                                                </select>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <label class="space" style="margin-top:12px">Thời gian bắt đầu tuyển sinh</label>
+                                                <input class="form-control" type="text" id="txt-thoi gian bat dau tuyen sinh" value="" placeholder="..." style="max-width:unset;" />
+                                            </div>
+                                            <div class="col-md-12">
+                                                <label class="space" style="margin-top:12px">Thời gian kết thúc tuyển sinh</label>
+                                                <input class="form-control" type="text" id="txt-thoi gian ket thuc tuyen sinh" value="" placeholder="..." style="max-width:unset;" />
+                                            </div>
+                                            <div class="col-md-12">
+                                                <label class="space" style="margin-top:12px">Điểm dự kiến</label>
+                                                <input class="form-control" type="text" id="txt-diem du kien" value="" placeholder="..." style="max-width:unset;" />
+                                            </div>
+                                            <div class="col-md-12">
+                                                <label class="space" style="margin-top:12px">Chỉ tiêu</label>
+                                                <input class="form-control" type="text" id="txt-chi tieu" value="" placeholder="..." style="max-width:unset;" />
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="col-md-12">
+                                                <label class="space" @*style="margin-top:12px*@">Năm học</label>
+                                                <input class="form-control" type="text" id="txt-nam hoc" value="" placeholder="..." style="max-width:unset;" />
+                                            </div>
+                                            
+                                            <div class="col-md-12" style="margin-top:12px;">
+                                                <label>Ghi chú</label>
+                                                <textarea class="form-control" type="text" name="name" style="max-width:unset;resize:vertical;max-height:240px"></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
+                        <button type="button" class="btn btn-primary">Lưu</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <a href="#" class="btn btn-primary">Xóa </a>
+    </div>
+    <div class="col-md-6"></div>
+    <div class="col-md-3">
+        <div class="search-container" style="float: right; padding: 6px 10px; margin-top: 8px; margin-right: 16px;font-size: 17px; border: none; cursor: pointer; float: none; display: block; text-align: left; width: 100%; margin: 0; padding: 14px; ">
+            <form action="/action_page.php">
+                <input type="text" placeholder="Tìm kiếm.." name="search">
+                <button type="submit"><i class="fa fa-search"></i></button>
+            </form>
+        </div>
+    </div>
+    <div class="box-body">
+        <table id="example2" class="table table-bordered table-hover">
+            <thead>
+                <tr>
+                    <th>Tên kế hoạch</th>
+                    <th>Thời gian bắt đầu tuyển sinh</th>
+                    <th>Thời gian kết thúc tuyển sinh</th>
+                    <th>Chỉ tiêu</th>
+                   
+                    <th style="width:10%">Chức năng</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td></td>
+                    <td>
+                    </td>
+                    <td></td>
+                    <td></td>
+                   
+                    <td>
+                        <a href="#" style="margin-left:10px"> <u>Xóa</u></a>
+                        <a href="#" style="margin-left:10px"> <u>Sửa</u></a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+

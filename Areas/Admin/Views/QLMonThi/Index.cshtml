@@ -1,0 +1,143 @@
+﻿
+
+
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutPage1.cshtml";
+}
+
+@*<div class="col-md-12">
+        <p style=" font-size: 25px;">Hồ sơ trúng tuyển</p>
+    </div>*@
+<div class="col-md-12">
+    @*<a href="#" class="btn btn-primary">Xóa hồ sơ</a>*@
+
+    <div class="col-md-3">
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+            Thêm môn thi
+        </button>
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content" style="width:1200px;margin-left:-280px;">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">THÊM MÔN THI</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <link href="~/Assets/Frontend/css/file.css" rel="stylesheet" />
+                        <style>
+                            .nopadding {
+                                padding-left: 5PX !important;
+                                padding-right: 5PX !important;
+                            }
+                        </style>
+                        <div class="container" style="border:1px solid black;padding-top:14px;padding-bottom:14px;">
+                            <div class="tab-content">
+                                <div class="active tab-pane" id="activity">
+                                    <div class="col-md-12">
+                                        <p class="Ten" style="text-align:center">TẠO MÔN THI</p>
+                                        @*<p class="name" style="text-align:center;">(Thí sinh cần đọc kỹ thông tin trước khi điền)</p>*@
+                                        <h2 style="font-size:18px"></h2>
+                                        <div class=" col-md-6">
+                                            <div class="col-md-12">
+                                                <label>Tên môn thi</label>
+                                                <input class="form-control" type="text" id="txt-name" placeholder="..." style="max-width:unset;" />
+                                            </div>
+                                            <div class="col-md-12">
+                                                <label class="space" style="margin-top:12px">Ngày thi</label>
+                                                <input class="form-control" type="date" id="txt-ky thi" value="" placeholder="..." style="max-width:unset;" />
+                                            </div>
+                                            <div class="col-md-12">
+                                                <label class="space" style="margin-top:12px">Hình thức thi</label>
+                                                <select class="form-control custom-select-sm md-3 " style="max-width:unset;">
+                                                    <option selected class="form-control">Trắc nghiệm</option>
+                                                    <option selected class="form-control">Tự luận</option>
+                                                </select>
+                                            </div>
+
+                                        </div>
+                                        <div class="col-md-6">
+
+                                            <div class="col-md-12">
+                                                <label>Thời gian bắt đầu làm bài:</label>
+                                                <input class="form-control" type="date" id="time bat dau lam bai" placeholder="..." style="max-width:unset;" />
+                                            </div>
+                                            <div class="col-md-12">
+                                                <label class="space" style="margin-top:12px">Thời gian kết thúc làm bài:</label>
+                                                <input class="form-control" type="date" id="time ket thuc lam bai" value="" placeholder="..." style="max-width:unset;" />
+                                            </div>
+                                            <div class="col-md-12">
+                                                <label class="space" style="margin-top:12px">Thời gian làm bài:</label>
+                                                <input class="form-control" type="datetime-local" id="ghi chu" value="" placeholder="..." style="max-width:unset;" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Xóa</button>
+                        <button type="button" class="btn btn-primary">Lưu</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <a href="#" class="btn btn-primary">Xóa môn thi</a>
+    </div>
+    <div class="col-md-6"></div>
+    <div class="col-md-3">
+        <div class="search-container" style="float: right; padding: 6px 10px; margin-top: 8px; margin-right: 16px;font-size: 17px; border: none; cursor: pointer; float: none; display: block; text-align: left; width: 100%; margin: 0; padding: 14px; ">
+            <form action="/action_page.php">
+                <input type="text" placeholder="Tìm kiếm.." name="search">
+                <button type="submit"><i class="fa fa-search"></i></button>
+            </form>
+        </div>
+    </div>
+    <div class="box-body">
+        <table id="example2" class="table table-bordered table-hover">
+            <thead>
+                <tr>
+                    <th style="width:2%;">
+                        <input type="checkbox" name="name" value="" id="check all" />
+                    </th>
+                    <th >Mã môn thi</th>
+                    <th >Tên môn thi</th>
+                    <th >Hình thức thi</th>
+                    <th >Ngày thi</th>
+                    <th>Thời gian làm bài</th>
+                    <th style="width:10%">Chức năng</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        <input type="checkbox" name="name" value="" id="check box" />
+                    </td>
+                    <td>123</td>
+                    <td>
+                        A
+                    </td>
+                    <td>2020-2021</td>
+                    <td></td>
+                    <td></td>
+                    <td>
+                        <a href="#" style="margin-left:10px"> <u>Xem</u> </a>
+                        <a href="#" style="margin-left:10px"> <u>Xóa</u></a>
+                        <a href="#" style="margin-left:10px"> <u>Sửa</u></a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+
+
+
+

@@ -1,0 +1,175 @@
+﻿
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutPage1.cshtml";
+}
+
+<div class="col-md-12">
+        <p style=" font-size: 25px;">Quản lý kiểu người dùng</p>
+    </div>
+<div class="col-md-12">
+    @*<a href="#" class="btn btn-primary">Xóa hồ sơ</a>*@
+
+    <div class="col-md-3">
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+            Thêm mới
+        </button>
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content" style="width:1200px;margin-left:-280px;">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">THÊM NGƯỜI DÙNG</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <link href="~/Assets/Frontend/css/file.css" rel="stylesheet" />
+                        <style>
+                            .nopadding {
+                                padding-left: 5PX !important;
+                                padding-right: 5PX !important;
+                            }
+                        </style>
+                        <div class="container" style="border:1px solid black;padding-top:14px;padding-bottom:14px;">
+                            <div class="tab-content">
+                                <div class="active tab-pane" id="activity">
+                                    <div class="col-md-12">
+                                        <p class="Ten" style="text-align:center">THÊM KIỂU NGƯỜI DÙNG</p>
+                                        @*<p class="name">(* Cần đọc kỹ thông tin trước khi điền)</p>*@
+                                        <h2 style="font-size:18px"></h2>
+                                        <div class=" col-md-6">
+                                            <div class="col-md-3">
+                                                <label>Kiểu người dùng</label>
+                                            </div>
+                                            <div class="col-md-12">
+                                                
+                                                <input class="form-control" type="text" id="txt-kieu nguoi dung" placeholder="..." style="max-width:unset;"/>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <label class="space" style="margin-top:12px">Vai trò người dùng</label>
+                                                <input class="form-control" type="text" id="txt-vai tro nguoi dung" value="" placeholder="..." style="max-width:unset;" />
+                                            </div>
+                                            @*<div class="col-md-12">
+                                                <label class="space" style="margin-top:12px">Mật khẩu</label>
+                                                <input class="form-control" type="text" id="txt-mat khau" value="" placeholder="..." style="max-width:unset;" />
+                                            </div>
+                                            <div class="col-md-12">
+                                                <label style="margin-top:10px">Email</label>
+                                                <input class="form-control" type="email" id="txt-email" placeholder="..." style="max-width:unset;" />
+                                            </div>
+                                            <div class="col-md-12">
+                                                <label style="margin-top:10px">Ngày sinh</label>
+                                                <input class="form-control" type="date" id="dateNgaySinh" placeholder="..." style="max-width:unset;" />
+                                            </div>
+                                            <div class="col-md-12">
+                                                <label style="margin-top:10px">Số điện thoại</label>
+                                                <input class="form-control" type="text" id="so dien thoai" placeholder="..." style="max-width:unset;" />
+                                            </div>
+                                            <div class="col-md-12">
+                                                <label style="margin-top:10px">Địa chỉ</label>
+                                                <input class="form-control" type="text" id="dia chi" placeholder="..." style="max-width:unset;" />
+                                            </div>*@
+                                        </div>
+                                        <div class="col-md-6">
+                                            @*<div class="col-md-12">
+                                                <label>Đơn vị trường</label>
+                                                <select class="form-control custom-selectl-sm md-3" style="max-width:unset">
+                                                    <option selected class="form-control">Sở GD va ĐT tỉnh Hà Nội</option>
+                                                </select>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <label style="margin-top:10px">Kiểu người dùng</label>
+                                                <select class="form-control custom-selectl-sm md-3" style="max-width:unset">
+                                                    <option selected class="form-control">Quản trị viên</option>
+                                                </select>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <label style="margin-top:10px">Trạng thái</label>
+                                                <select class="form-control custom-selectl-sm md-3" style="max-width:unset">
+                                                    <option selected class="form-control">Đang sử dụng</option>
+                                                    <option selected class="form-control">Dừng sử dụng</option>
+                                                    <option selected class="form-control">Cấm sử dụng</option>
+                                                </select>
+                                            </div>*@
+                                            <div class="col-md-12">
+                                                <label>Ghi chú</label>
+                                                <textarea class="form-control" type="text" name="name" style="max-width:unset;resize:vertical;max-height:240px" ></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
+                        <button type="button" class="btn btn-primary">Lưu</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <a href="#" class="btn btn-primary">Xóa </a>
+    </div>
+    <div class="col-md-6"></div>
+    <div class="col-md-3">
+        <div class="search-container" style="float: right; padding: 6px 10px; margin-top: 8px; margin-right: 16px;font-size: 17px; border: none; cursor: pointer; float: none; display: block; text-align: left; width: 100%; margin: 0; padding: 14px; ">
+            <form action="/action_page.php">
+                <input type="text" placeholder="Tìm kiếm.." name="search">
+                <button type="submit"><i class="fa fa-search"></i></button>
+            </form>
+        </div>
+    </div>
+    <div class="box-body">
+        <table id="example2" class="table table-bordered table-hover">
+            <thead>
+                <tr>
+                    @*<th style="width:2%;">
+                        <input type="checkbox" name="name" value="" id="check all" />
+                    </th>*@
+                    <th>Kiểu người dùng</th>
+                    <th>Quản trị viên</th>
+                    <th>Người dùng</th>
+                    @*<th>Đơn vị trường</th>
+                    <th>Ngày tham gia</th>
+                    <th>Địa chỉ</th>
+                    <th>Trạng thái</th>*@
+                    <th style="width:10%">Chức năng</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    @*<td>
+                        <input type="checkbox" name="name" value="" id="check box" />
+                    </td>*@
+                    <td>Chuyên viên</td>
+                    <td>
+                        
+                    </td>
+                    @*<td>Quản trị viên</td>
+                    <td>Sở GD và ĐT tình Hà Nội</td>
+                    <td>25/02/1999</td>
+                    <td>Số nhà 11-Ngõ 74-đường Tân Triều-Triều Khúc-Thanh Xuân-Hà Nội</td>*@
+                    <td></td>
+                    <td>
+                        @*<a href="#" style="margin-left:10px"> <u>Xem</u> </a>*@
+                        <a href="#" style="margin-left:10px"> <u>Xóa</u></a>
+                        <a href="#" style="margin-left:10px"> <u>Sửa</u></a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,159 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutPage1.cshtml";
+}
+
+<link href="~/Assets/Frontend/css/file.css" rel="stylesheet" />
+<div class="col-md-12">
+    <div class="col-md-5" style="border:1px solid black;height:443px;">
+        <div class="col-md-12">
+            <p class="Ten">CÀI ĐẶT SỐ BÁO DANH</p>
+        </div>
+        <div class="col-md-12" style="margin-top:10px;">
+            <div class="col-md-3">
+                <label style="font-size:16px;margin-top:7px;">Tiền tố</label>
+            </div>
+            <div class="col-md-9">
+                <input class="form-control" type="text" name="name" value="" />
+            </div>                   
+        </div>
+        <div class="col-md-12" style="margin-top:30px;">
+            <div class="col-md-3">
+                <label style="font-size:16px;margin-top:7px;">Độ dài</label>
+            </div>
+            <div class="col-md-9">
+                <input class="form-control" type="text" name="name" value="" />
+            </div>
+        </div>
+        <div class="col-md-12" style="margin-top:30px;">
+            <div class="col-md-3">
+                <label style="font-size:16px;margin-top:7px;">Hậu tố</label>
+            </div>
+            <div class="col-md-9">
+                <input class="form-control" type="text" name="name" value="" />
+            </div>
+        </div>
+        <div class="col-md-12">
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" style="margin-top:30px;margin-left:355px;">
+                Tạo SBD
+            </button>
+        </div>
+    </div>
+    <div class="col-md-7" style="border: 1px solid black; padding-top: 14px; padding-bottom: 14px;">
+        <div class="col-md-12">
+            <p class="Ten">THÔNG TIN KỲ TUYỂN SINH</p>
+        </div>
+        <div class="col-md-12" style="margin-top:10px;">
+            <div class="col-md-4">
+                <label style="font-size:16px;">Mã kỳ tuyển sinh</label>
+            </div>
+            <div class="col-md-8">
+                <input style="margin-left:-35px;" class="form-control" type="text" name="name" value="" />
+            </div>
+        </div>
+        <div class="col-md-12" style="margin-top:20px;">
+            <div class="col-md-4">
+                <label style="font-size:16px;">Tên kỳ tuyển sinh</label>
+            </div>
+            <div class="col-md-8">
+                <input style="margin-left:-35px;" class="form-control" type="text" name="name" value="" />
+            </div>
+        </div>
+        <div class="col-md-12"  style="margin-top:20px;">
+            <div class="col-md-4">
+                <label style="font-size:16px;">Năm học</label>
+            </div>
+            <div class="col-md-8">
+                <input style="margin-left:-35px;" class="form-control" type="text" name="name" value="" />
+            </div>
+        </div>
+        <div class="col-md-12"  style="margin-top:20px;">
+            <div class="col-md-4">
+                <label style="font-size:16px;">Trạng thái</label>
+            </div>
+            <div class="col-md-8">
+                <input style="margin-left:-35px;" class="form-control" type="text" name="name" value="" />
+            </div>
+        </div>
+        <div class="col-md-12"   style="margin-top:20px;">
+            <div class="col-md-4">
+                <label style="font-size:16px;">Thời gian bắt đầu</label>
+            </div>
+            <div class="col-md-8">
+                <input style="margin-left:-35px;" class="form-control" type="text" name="name" value="" />
+            </div>
+        </div>
+        <div class="col-md-12" style="margin-top:20px;">
+            <div class="col-md-4">
+                <label style="font-size:16px;">Thời gian kết thúc</label>
+            </div>
+            <div class="col-md-8">
+                <input style="margin-left:-35px;" class="form-control" type="text" name="name" value="" />
+            </div>
+        </div>
+        <div class="col-md-12"  style="margin-top:20px;">
+            <div class="col-md-4">
+                <label style="font-size:16px;">Ghi chú</label>
+            </div>
+            <div class="col-md-8">
+                <input style="margin-left:-35px;" class="form-control" type="text" name="name" value="" />
+            </div>
+        </div>
+
+    </div>
+    <div class="col-md-12" >     
+            <p class="Ten"  style="margin-top:20px;">Danh sách thí sinh</p>     
+    </div>
+    <div class="box-body">
+        <table id="example2" class="table table-bordered table-hover">
+            <thead>
+                <tr>
+                    @*<th style="width:2%;">
+                            <input type="checkbox" name="name" value="" id="check all" />
+                        </th>*@
+                    <th>SBD</th>
+                    <th>Mã học sinh</th>
+                    <th>Họ và tên</th>
+                    <th>Ngày sinh</th>
+                    <th>Giới tính</th>
+                    <th>Trường học</th>
+                    @*<th>Trạng thái</th>
+                    <th style="width:10%">Chức năng</th>*@
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    @*<td>
+                            <input type="checkbox" name="name" value="" id="check box" />
+                        </td>*@
+                    <td>ABC0001</td>
+                    <td>
+                        123
+                    </td>
+                    <td>Lê Văn A</td>
+                    <td>25/02/1999</td>
+                    <td>Nam</td>
+                    <td>THCS Hà Nội</td>
+                   
+                    <!--<td>-->
+                        @*<a href="#" style="margin-left:10px"> <u>Xem</u> </a>*@
+                        <!--<a href="#" style="margin-left:10px"> <u>Xóa</u></a>
+                        <a href="#" style="margin-left:10px"> <u>Sửa</u></a>
+                    </td>-->
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,239 @@
+﻿@using Models.EF;
+@{
+    List<Truong> lstTruong = ViewBag.lstTruong;
+    List<DiaChi> lstTinh = ViewBag.lstTinh;
+    List<TenKieuDoiTuongUuTien> lstDTUT = ViewBag.lstDoiTuongUuTien;
+}
+
+
+<link href="~/Assets/Frontend/css/file.css" rel="stylesheet" />
+
+<style>
+    .nopadding {
+        padding-left: 5PX !important;
+        padding-right: 5PX !important;
+    }
+</style>
+
+<div class="container" style="border:1px solid black;padding-top:14px;padding-bottom:14px;">
+    <div class="tab-content">
+        <div class="active tab-pane" id="activity">
+            <div class="col-md-12">
+                <p class="Ten" style="text-align:center;">PHIẾU ĐĂNG KÝ TUYỂN SINH VÀO LỚP 10 THPT</p>
+                <p class="name" style="text-align:center;">(Thí sinh cần đọc kỹ thông tin trước khi điền)</p>
+                <h2 style="font-size:18px">I.THÔNG TIN CÁ NHÂN</h2>
+                <div class=" col-md-4">
+                    <div class="col-md-12">
+                        <label>Họ và Tên:(Viết chữ in hoa)</label>
+                        <input id="hdID" type="hidden" value="0" />
+                        <input class="form-control" type="text" id="txtHoTen" placeholder="Ghi rõ họ tên..." />
+                    </div>
+                    <div class="col-md-12">
+                        <label class="space" style="margin-top:12px">Email:</label>
+                        <input class="form-control" type="email" id="txtEmail" value="" placeholder="Ghi rõ Email..." />
+                    </div>
+                    <div class="col-md-12">
+                        <label class="space" style="margin-top:12px">Ngày/Tháng/Năm:</label>
+                        <input class="form-control" type="text" id="txtNgaySinh" name="birthday">
+                    </div>
+                    <div class="col-md-12">
+                        <label class="space" style="margin-top:12px">Đối tượng ưu tiên,khuyến khích:</label>
+                        @*<input class="form-control" type="text" id="txt-ut" value="" placeholder="Ghi rõ loại đối tượng..." />*@
+                        <select class="form-control custom-select-sm md-3 " id="ddlDoiTuongUuTien">
+
+                            @foreach (var item in lstDTUT)
+                            {
+                                <option value="@item.ID">@item.KieuDoiTuongUuTien</option>
+                            }
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-8" style="margin-top:13px;">
+                    <div class="col-md-6" style="margin-top:-14px;margin-left:-10px;">
+                        <label>Giới tính:</label>
+                        <select class="form-control custom-select-sm md-3 " style="max-width:unset;width:90px; " id="ddlGioiTinh">
+                            <option value="1">Nam</option>
+                            <option value="2">Nữ</option>
+                        </select>
+                    </div>
+                    <div class="col-md-6" style="margin-top:-15px; margin-left:-118px;">
+                        <label>Dân tộc</label>
+                        @*<input class="form-control" type="text" id="txt-dan toc" value="" placeholder="Ghi rõ..." />*@
+                        <select class="form-control custom-select-sm md3" style="max-width:unset;width:110px;" id="ddlDanToc">
+                            <option value="Kinh">Kinh</option>
+                            <option value="Mông">Mông</option>
+                        </select>
+                    </div>
+                    <div class="col-md-12">
+                        <label class="add" style="margin-left:-10px;margin-top:12px">Hộ khẩu thường trú:</label>
+                        <div class="row">
+                            <div class="col-md-4 nopadding">
+                                <select class="form-control custom-select-sm md-3 " id="ddlTinhThuongTru" onchange="ChangeddlTinhA(0)">
+
+                                    @foreach (var item in lstTinh)
+                                    {
+                                        <option value="@item.ID">@item.TenDiaChi</option>
+                                    }
+                                </select>
+                            </div>
+                            <div class="col-md-4 nopadding">
+                                <select class="form-control custom-select-sm md-3 " id="ddlHuyenThuongTru" onchange="ChangeddlHuyenA()">
+                                    <option selected class="form-control">Huyện thường trú</option>
+                                </select>
+                            </div>
+                            <div class="col-md-4 nopadding">
+                                <select class="form-control custom-select-sm md-3 " id="ddlXaThuongTru">
+                                    <option selected class="form-control">Xã thường trú</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12" style="margin-left:-8px;">
+                        <label style="margin-top:11px;">Ghi rõ số nhà,tên đường:</label>
+                        <input style="max-width:unset; width:698px;" class="form-control" type="text" id="txtDiaChiThuongTru" value="" placeholder="Ghi rõ số nhà, số đường nếu có..." />
+                    </div>
+                    <div class="col-md-12">
+                        <label class="add" style="margin-top:13px;margin-left:-6px;">Địa chỉ tạm trú:</label>
+                        <div class="row">
+                            <div class="col-md-4 nopadding">
+                                <select class="form-control custom-select-sm md-3 " id="ddlTinhTamTru" onchange="ChangeddlTinhA(1)">
+
+                                    @foreach (var item in lstTinh)
+                                    {
+                                        <option value="@item.ID">@item.TenDiaChi</option>
+                                    }
+                                </select>
+                            </div>
+                            <div class="col-md-4 nopadding">
+                                <select class="form-control custom-select-sm md-3 " id="ddlHuyenTamTru" onchange="ChangeddlHuyenB()">
+                                    <option selected class="form-control">Huyện tạm trú</option>
+                                </select>
+                            </div>
+                            <div class="col-md-4 nopadding">
+                                <select class="form-control custom-select-sm md-3 " id="ddlXaTamTru">
+                                    <option selected class="form-control">Xã tạm trú</option>
+                                </select>
+                            </div>
+                            <div class="col-md-12" style="margin-left:-8px;">
+                                <label style="margin-top:11px;">Ghi rõ số nhà,tên đường:</label>
+                                <input style="max-width:unset; width:698px;" class="form-control" type="text" id="txtDiaChiTamTru" value="" placeholder="Ghi rõ số nhà, số đường nếu có..." />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <h2 style="font-size:18px">II.THÔNG TIN NGƯỜI GIÁM HỘ</h2>
+                @*<div class="col-md-4">*@
+                <div class="col-md-4">
+                    <label style="margin-top:11px; margin-left:12px;">Tên người giám hộ:</label>
+                    <input class="form-control" type="text" id="txtTenNguoiGiamHo" placeholder="Ghi rõ họ tên..." style="margin-left:17px;" />
+                </div>
+                <div class="col-md-4" style="margin-top:12px" ;>
+                    <label>Email người giám hộ:</label>
+                    <input class="form-control" type="email" id="txtEmailNguoiGiamHo" placeholder="Ghi rõ Email..." />
+                </div>
+                <div class="col-md-4" style="margin-top:12px" ;>
+                    <label style="margin-left:54px;">Số điện thoại liên hệ:</label>
+                    <input class="form-control" type="number" id="txtSoDienThoaiLienHe" placeholder="Ghi rõ số điện thoại..." style="margin-left:57px;" />
+                    @*</div>*@
+                </div>
+                <div class="col-md-8" style="margin-left:10px;">
+
+                    <div class="col-md-12" style="margin-top:11px;margin-left:-8px;">
+                        <label>Nghề nghiệp:</label>
+                        <input class="form-control" type="text" id="txtNgheNghiep" name="name" value="" placeholder="Ghi rõ nghề nghiệp..." />
+                    </div>
+                </div>
+            </div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h2 style="font-size:18px">III.THÔNG TIN CHA MẸ:</h2>
+                        <div class="col-md-4">
+                            <div class="col-md-12">
+                                <label>Họ tên mẹ:</label>
+                                <input class="form-control" type="text" id="txtTenMe" placeholder="Ghi rõ họ tên..." />
+                            </div>
+                            <div class="col-md-12">
+                                <label style="margin-top:15px;">Họ tên bố:</label>
+                                <input class="form-control" type="text" id="txtTenBo" placeholder="Ghi rõ họ tên..." />
+                            </div>
+                        </div>
+                        <div class="col-md-8" style="margin-left:-18px;">
+                            <div class="col-md-6">
+                                <label>Nghề nghiệp mẹ:</label>
+                                <input class="form-control" type="text" id="txtNgheNghiepMe" name="name" value="" placeholder="Nhập đúng thông tin..." />
+                            </div>
+                            <div class="col-md-6">
+                                <label>Số điện thoại mẹ:</label>
+                                <input class="form-control" type="text" id="txtSoDienThoaiMe" name="name" value="" placeholder="Nhập số điện thoại..." style="max-width:unset" />
+                            </div>
+                            <div class="col-md-6">
+                                <label style="margin-top:15px;">Nghề nghiệp bố:</label>
+                                <input class="form-control" type="text" id="txtNgheNghiepBo" name="name" value="" placeholder="Nhập đúng thông tin..." />
+                            </div>
+                            <div class="col-md-6">
+                                <label style="margin-top:16px;">Số điện thoại bố:</label>
+                                <input class="form-control" type="text" id="txtSoDienThoaiBo" name="name" value="" placeholder="Nhập số điện thoại..." style="max-width:unset" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <h2 style="font-size:18px">IV.ĐĂNG KÝ NGUYỆN VỌNG THI TUYỂN:</h2>
+                <div class="col-md-4">
+                    <div class="col-md-12">
+                        <label style="font-size:22px" ;> <u>Nguyện vọng 1:</u> </label>
+                        <select class="form-control custom-select-sm md-3 " id="ddlNguyenVong1" onchange="ChangeddlTruong()">
+
+                            @foreach (var item in lstTruong)
+                            {
+                                <option value="@item.ID">@item.Tentruong</option>
+                            }
+                        </select>
+                    </div>
+                    <div class="col-md-12" style="margin-top:18px;">
+                        <label style="font-size:22px" ;> <u>Nguyện vọng 2:</u> </label>
+                        <select class="form-control custom-select-sm md-3 " id="ddlNguyenVong2">
+                            <option selected class="form-control">Tên trường</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="col-md-3">
+
+                </div>
+                <div class="col-md-5">
+                    <div class="col-md-12">
+                        <label>File chứa các thông tin liên quan:</label>
+
+                        <div>
+                            <input type="file" name="file" id="uploadFile" />
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div style="margin-top:20px;" class="col-md-12">
+                <div class="col-md-8">
+                    <p><b><u>Note:</u></b>(Thi sinh phải khai báo đầy đủ, chính xác thông tin)</p>
+                </div>
+                <div class="col-md-4" style="margin-left:1000px;">
+                    <a class="btn btn-success" value="Gửi đăng ký" style="background-color: #1e61b1!important;color:white" onclick="SaveHoSo()">Gửi đăng kí</a>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+</div>
+<script src="~/Scripts/AdminJS/ChucNang.js"></script>
+<script src="~/Scripts/AdminJS/ThongTin.js"></script>
+@*<script src="https://code.jquery.com/jquery-3.6.0.js" ></script>*@
+@*<script>
+        $(document).ready(function () {
+            alert("ok");
+        });
+    </script>*@
