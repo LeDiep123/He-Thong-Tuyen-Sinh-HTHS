@@ -1,5 +1,5 @@
 ﻿// Lưu nôi dung hs trả lại
-//da lam xong o cho lam
+//lam o nha da xong
 function SavesContent() {
     var array = [];
     $("#tableAll tr input[type=checkbox]").each(function () {
