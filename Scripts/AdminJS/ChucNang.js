@@ -524,6 +524,7 @@ function XemHS(id) {
                 $('#uploadFile').attr('disabled', 'disabled');
                 $(':input[type=submit]').prop('disabled', true);
                 //xem đối tượng ưu tiên
+                //hello em quy anh
                 var html = '';
                 let c =
                     `<thead>
