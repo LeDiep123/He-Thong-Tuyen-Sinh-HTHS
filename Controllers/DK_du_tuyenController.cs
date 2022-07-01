@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using Models.EF;
+using Models.Entity;
 using Models.Dao;
 using System.IO;
 using System.Web.Script.Serialization;
@@ -16,7 +16,8 @@ namespace He_Thong_Tuyen_Sinh_HTHS.Controllers
         DoiTuongUuTienDao da = new DoiTuongUuTienDao();
         DiaChiDao dc = new DiaChiDao();
         NguyenVongDao de = new NguyenVongDao();
-        HTTuyenSinhDBcontext db = new HTTuyenSinhDBcontext();
+        HeThongTuyenSinhDDBcontext db = new HeThongTuyenSinhDDBcontext();
+        HoSoDuTuyenDao dm = new HoSoDuTuyenDao();
 
         public ActionResult Index()
         {
@@ -206,7 +207,7 @@ namespace He_Thong_Tuyen_Sinh_HTHS.Controllers
                 hs.TrangThai = 1;
                 db.SaveChanges();
                 var idHS = hs.ID;
-                //ahihi
+                
                 HttpFileCollectionBase files = Request.Files;
                 for (int i = 0; i < files.Count; i++)
                 {
@@ -228,23 +229,22 @@ namespace He_Thong_Tuyen_Sinh_HTHS.Controllers
                     db.Files.Add(ffiless);
                     db.SaveChanges();
                 }
+
+                
                 JavaScriptSerializer js = new JavaScriptSerializer();
+
                 List<int> idDTUT = js.Deserialize<List<int>>(arrDTUT);
 
-                foreach (var itemss in idDTUT)
-                {
+                 dm.DeleteListDTUT(idHS);
 
-                    var addDTUT = new HocSinh_TKDTUT();
+                foreach (var itemss in idDTUT)
+                {                    
+                    var addDTUT = new HocSinh_TKDTUT();                    
                     addDTUT.ID_HocSinh = idHS;
                     addDTUT.ID_TenKieuDoiTuongUT = itemss;
-                    db.HocSinh_TKDTUT.Add(addDTUT);
+                    db.HocSinh_TKDTUT.Add(addDTUT);                   
                     db.SaveChanges();
-
-
                 }
-
-                //JavaScriptSerializer js = new JavaScriptSerializer();
-                //List<int> idUT = js.Deserialize<List<int>>();
 
                 mess = "Sửa thành công";
             }

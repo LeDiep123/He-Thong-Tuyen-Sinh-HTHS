@@ -7,7 +7,7 @@ using System.Web.Script.Serialization;
 //using He_Thong_Tuyen_Sinh_HTHS.Areas.Admin.Dao;
 using Models.Dao;
 using Models.Dto;
-using Models.EF;
+using Models.Entity;
 using PagedList;
 
 namespace He_Thong_Tuyen_Sinh_HTHS.Areas.Admin.Controllers
@@ -17,7 +17,7 @@ namespace He_Thong_Tuyen_Sinh_HTHS.Areas.Admin.Controllers
         // GET: Admin/HoSoDuTuyen
         DiaChiDao dc = new DiaChiDao();
         NguyenVongDao de = new NguyenVongDao();
-        HTTuyenSinhDBcontext db = new HTTuyenSinhDBcontext();
+        HeThongTuyenSinhDDBcontext db = new HeThongTuyenSinhDDBcontext();
         HoSoDuTuyenDao dm = new HoSoDuTuyenDao();
         FileDao fAll = new FileDao();
         DoiTuongUuTienDao da = new DoiTuongUuTienDao();
@@ -45,7 +45,7 @@ namespace He_Thong_Tuyen_Sinh_HTHS.Areas.Admin.Controllers
                     DanhSachDTUT = new List<DTUT_Dto>()
                 };
 
-                var listDTUTDao = dm.getDoiTuongUuTienByHSId(hocsinhDao.ID);
+                var listDTUTDao = dm.getDoiTuongUuTienByHSId(hocsinhDao.ID);               
                 var listDTUTDto = new List<DTUT_Dto>();
                 foreach (var DTUTDao in listDTUTDao)
                 {
@@ -62,16 +62,29 @@ namespace He_Thong_Tuyen_Sinh_HTHS.Areas.Admin.Controllers
             }
 
 
-
-            var listData = dm.GetAllHocSinh_DTUT();
-            var result = listData.GroupBy(s => s.IdDTUT, (key, group) => new BaoCaoSoLuongTheoDTUT_Dto()
+            //gom những đối tượng ưu tiên vào 1 hàng
+            //var listData = dm.GetAllHocSinh_DTUT(search = "") ;
+            var result = listHocSinhDao.GroupBy(s => s.IdDTUT, (key, group) => new BaoCaoSoLuongTheoDTUT_Dto()
             {
                 ID = key,
-                TenKieuDoiTuongUuTien = group.First().KieuDoiTuongUuTien,   
-                SoLuongHocSinh = group.Count()
+                TenKieuDoiTuongUuTien = String.Join(", ",group.Select(s=>s.KieuDoiTuongUuTien)),
+                //join(", ", item.DanhSachDTUT.Select(s => s.KieuDoiTuongUuTien)
+                SoLuong = group.Count()
             }).ToList();
 
             ViewBag.ThongKe = result;
+
+
+            //var hienThiHocSinh = listHocSinhDao.GroupBy(s => s.ID, (a, b) => new HocSinh_DTUT_Dto()
+            //{
+            //    ID = a,
+            //    TenHS = b.First().TenHS,
+            //    GioTinh = b.First().GioTinh,
+            //    TrangThai = b.First().TrangThai,
+            //    DanhSachDTUTS = String.Join(",", b.Select(s => s.KieuDoiTuongUuTien))
+
+
+            //}).ToList();
 
             ViewBag.Search = search;
 
@@ -119,6 +132,25 @@ namespace He_Thong_Tuyen_Sinh_HTHS.Areas.Admin.Controllers
                 mess = "Đã xóa thành công bản ghi"
             }, JsonRequestBehavior.AllowGet);
         }
+
+
+        //Xóa từng file theo Id truyền vào
+        public JsonResult DelFile(int ID)
+        {
+            var IdFile = db.Files.FirstOrDefault(a => a.ID == ID);
+            
+                db.Files.Remove(IdFile);
+                db.SaveChanges();
+            
+            
+            return Json(new
+            {
+                status = true,
+
+                mess = "Đã xóa thành công"
+            }, JsonRequestBehavior.AllowGet);
+        }
+    
 
 
         //Sửa từng hồ sơ và xem hồ sơ

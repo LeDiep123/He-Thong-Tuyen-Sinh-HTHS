@@ -71,13 +71,13 @@ function SavesContent() {
 }
 
 //show modal nội dung trả lại
-function Back(id) {
+function TraHS(id) {
     $('#returnform').modal("show");
     $('#hdID_A').val(id);
 }
 
 //show form hồ sơ trả lại nhiều hồ sơ
-function BackAll() {
+function TraAllHS() {
     $('.Checks').each(function () {
         if ($(this).is(':checked') == true) {
             $('#returnform').modal("show");
@@ -96,7 +96,6 @@ function LuuHoSo() {
         alert("Bạn chỉ được tải lên tối đa là 6 file");
         return false;
     }
-
     var ID = $('#hdID').val();
     var HoTen = $('#txtHoTen').val();
     var GioiTinh = $('#ddlGioiTinh').val();
@@ -164,7 +163,6 @@ function LuuHoSo() {
     formData.append("NguyenVong2", NguyenVong2);
     formData.append("UT", dataString);
 
-
     for (var i = 0; i < files.length; i++) {
         formData.append(files[i].name, files[i]);
     }
@@ -196,7 +194,7 @@ function LuuHoSo() {
 
 
 // Xóa hs
-function Deldelete(idHs) {
+function XoaHS(idHs) {
     let result = confirm("Bạn có muốn xóa hồ sơ này không?");
     if (result) {
         $.ajax({
@@ -225,11 +223,11 @@ function Deldelete(idHs) {
 }
 
 //fun xóa nhiều bảng ghi cùng lúc
-function DeleteAll() {
+function XoaAll() {
     $('.Checks').each(function () {
         if ($(this).is(':checked') == true) {
-            let Tralai = confirm("Bạn có muốn xóa những hồ sơ này không?");
-            if (Tralai) {
+            let XoaHet = confirm("Bạn có muốn xóa những hồ sơ này không?");
+            if (XoaHet) {
                 var array = [];
                 $("#tableAll tr input[type=checkbox]").each(function () {
                     if ($(this).is(":checked")) {
@@ -266,54 +264,72 @@ function DeleteAll() {
 
 
 //show form hs mới
-function addData() {
-    $('#exampleModal').modal("show");
-    $('#txtHoTen').val('');
-    $('#txtEmail').val('');
-    $('#txtNgaySinh').val('');
-    /*$('#ddlDoiTuongUuTien').val('');*/
-    $('#ddlGioiTinh').val('');
-    $('#ddlDanToc').val('');
-    $('#ddlTinhThuongTru').val('');
-    $('#ddlHuyenThuongTru').val('');
-    $('#ddlXaThuongTru').val('');
-    $('#txtDiaChiThuongTru').val('');
-    $('#ddlTinhTamTru').val('');
-    $('#ddlHuyenTamTru').val('');
-    $('#ddlXaTamTru').val('');
-    $('#txtDiaChiTamTru').val('');
-    $('#txtTenNguoiGiamHo').val('');
-    $('#txtEmailNguoiGiamHo').val('');
-    $('#txtSoDienThoaiLienHe').val('');
-    $('#txtNgheNghiep').val('');
-    $('#txtTenMe').val('');
-    $('#txtTenBo').val('');
-    $('#txtNgheNghiepMe').val('');
-    $('#txtSoDienThoaiMe').val('');
-    $('#txtNgheNghiepBo').val('');
-    $('#txtSoDienThoaiBo').val('');
-    $('#ddlNguyenVong1').val('');
-    $('#ddlNguyenVong2').val('');
-    $('#uploadFile').val('');
-
-}
-//Show hồ sơ mới ra
 //function addData() {
 //    $('#exampleModal').modal("show");
-//    $("#txtLHS").attr("disabled", false);
-//    $("#activity input,#activity select").each(function () {
-//        $(this).val("");
-//        $(this).attr("disabled", false);
-//    })
-//    $('#hdID').val("0");
-//    $("#itemFile").remove();
-
+//    $('#txtHoTen').val('');
+//    $('#txtEmail').val('');
+//    $('#txtNgaySinh').val('');
+//    /*$('#ddlDoiTuongUuTien').val('');*/
+//    $('#ddlGioiTinh').val('');
+//    $('#ddlDanToc').val('');
+//    $('#ddlTinhThuongTru').val('');
+//    $('#ddlHuyenThuongTru').val('');
+//    $('#ddlXaThuongTru').val('');
+//    $('#txtDiaChiThuongTru').val('');
+//    $('#ddlTinhTamTru').val('');
+//    $('#ddlHuyenTamTru').val('');
+//    $('#ddlXaTamTru').val('');
+//    $('#txtDiaChiTamTru').val('');
+//    $('#txtTenNguoiGiamHo').val('');
+//    $('#txtEmailNguoiGiamHo').val('');f
+//    $('#txtSoDienThoaiLienHe').val('');
+//    $('#txtNgheNghiep').val('');
+//    $('#txtTenMe').val('');
+//    $('#txtTenBo').val('');
+//    $('#txtNgheNghiepMe').val('');
+//    $('#txtSoDienThoaiMe').val('');
+//    $('#txtNgheNghiepBo').val('');
+//    $('#txtSoDienThoaiBo').val('');
+//    $('#ddlNguyenVong1').val('');
+//    $('#ddlNguyenVong2').val('');
+//    $('#uploadFile').val('');
 
 //}
+
+//Show hồ sơ mới ra
+function ThemMoiHS() {
+    $('#exampleModal').modal("show");
+    $("#txtLHS").attr("disabled", false);
+    $("input.form-control,#activity select,#activity button ").each(function () {
+        $(this).val("");
+        $(this).attr("disabled", false);
+    })
+   
+    $('#hdID').val("0");
+    $("#itemFile").hide();
+    $('#iddTUT').hide();
+    //$('input.Checkss').each(function () {
+    //    if ($(this).is(':checked') == true) {
+    //        $(this).prop('checked', false);
+    //    }
+    //})
+    $('input.Checkss').prop('checked',false)
+    $('#hideDTUT').show();
+    
+    
+}
+
 // Sửa hs
-function Edit(id) {
+function SuaHS(id) {
     $('#hideDTUT').show();
     $('#exampleModal').modal("show");
+    $("#txtLHS").attr("disabled", false);
+    $("input.form-control,#activity select,button.form-control ").each(function () {
+        $(this).val("");
+        $(this).attr("disabled", false);
+    })
+    $('#iddTUT').hide();
+    $("#itemFile").show();
     $.ajax({
         url: '/HoSoDuTuyen/Getdata',
         data: { id: id },
@@ -327,7 +343,7 @@ function Edit(id) {
                     let valueCheck = $(this).val();
                     let currentCheck = $(this);
                     $.each(response.idDTUT, function (index, value) {
-                        A = value.IdDTUT;
+                       let A = value.IdDTUT;
                         if (valueCheck == A) {
 
                             currentCheck.attr('checked', true);
@@ -336,16 +352,13 @@ function Edit(id) {
                     })
 
                 })
-                //$("#txtLHS").attr("disabled", false);
-                //$("#activity input,#activity select").each(function () {
-                //    $(this).attr("disabled", false);
-                //})
+                
+    
                 var sex = response.data.GioTinh == true ? "1" : "2";
                 $('#hdID').val(response.data.ID);
                 $('#txtHoTen').val(response.data.TenHS);
                 $('#txtEmail').val(response.data.Email);
                 $('#txtNgaySinh').val(response.data.NgaySinh);
-                /*$('#ddlDoiTuongUuTien').val(response.data.DTUT);*/
                 $('#ddlGioiTinh').val(sex).change();
                 $('#ddlDanToc').val(response.data.DanToc).change();
                 $('#ddlTinhThuongTru').val(response.data.IDTinhThT).change();
@@ -369,15 +382,26 @@ function Edit(id) {
                 $('#ddlNguyenVong1').val(response.data.NguyenVong1).change();
                 $('#ddlNguyenVong2').val(response.data.NguyenVong2).change();
                 $('#uploadFile').val(response.data.files);
+                var html = '';
+                let htmlBegin =
+                    `          <thead>
+                                    <tr>
+                                        <th>Tên file</th>
+                                        <th></th>
+                                    </tr>
+                               </thead>
+                               <tbody>`;
                 $.each(response.itemFile, function (index, value) {
-                    // html = `<p>${value.TenFile}</p>`
-                    html =
-                          `<div>
-                           <a href="/Uploads/File/${value.TenFile} " target="_blank">${value.TenFile} </a>
-                          </div>`;
-                    $('#itemFile').append(html);
-                })
 
+                     html += `
+                        <tr id="${value.ID}">
+                            <td><a href="/Uploads/File/${value.TenFile} " target="_blank">${value.TenFile} </a></td>
+                            <td><button style='font-size: 10px' onclick="XoaFile(${value.ID})"> <i class='fas fa-trash-alt'></i> </button></td>
+                        </tr>
+                        `
+                })
+                let Result = htmlBegin + html + '</tbody>';
+                $('#itemFile').html(Result);
 
             }
         },
@@ -389,8 +413,32 @@ function Edit(id) {
     });
 }
 
+function XoaFile(ID) {
 
-//nút Đóng
+    let resultt = confirm("Bạn có muốn xóa File này không?");
+    if (resultt) {
+        $.ajax({
+            url: '/HoSoDuTuyen/DelFile',
+            data: { ID: ID },
+            type: 'get',
+            dataType: 'json',
+        
+            success: function (response) {
+                if (response.status == true) {
+
+                    alert(response.mess);
+                    //location.reload();
+                    $('#' + ID).hide();
+                }
+            },
+            error: function (err) {
+                console.log(err);
+            }
+            
+        })
+    }
+}
+
 function Close() {
     $.ajax({
         success: function () {
@@ -405,7 +453,11 @@ function Close() {
 }
 
 // Xem Hs
-function seeView(id) {
+function XemHS(id) {
+    $("#itemFile").show();
+    $('#hideDTUT').hide();
+    $('#iddTUT').show();
+    
     $.ajax({
         url: '/HoSoDuTuyen/Getdata',
         data: { id: id },
@@ -422,8 +474,7 @@ function seeView(id) {
                 $('#txtEmail').val(response.data.Email);
                 $('#txtEmail').attr('disabled', 'disabled');
                 $('#txtNgaySinh').val(response.data.NgaySinh);
-                $('#txtNgaySinh').attr('disabled', 'disabled');
-                //$('#ddlDoiTuongUuTien').val(response.data.DTUT);
+                $('#txtNgaySinh').attr('disabled', 'disabled');               
                 $('#ddlDTUT').attr('disabled', 'disabled');
                 $('#ddlGioiTinh').val(sex).change();
                 $('#ddlGioiTinh').attr('disabled', 'disabled');
@@ -433,15 +484,15 @@ function seeView(id) {
                 $('#ddlTinhThuongTru').attr('disabled', 'disabled');
                 $('#ddlHuyenThuongTru').val(response.data.IDHuyenThT).change();
                 $('#ddlHuyenThuongTru').attr('disabled', 'disabled');
-                $('#ddlXaThuongTru').val(response.data.IDXaThT);
+                $('#ddlXaThuongTru').val(response.data.IDXaThT).change();
                 $('#ddlXaThuongTru').attr('disabled', 'disabled');
-                $('#txtDiaChiThuongTru').val(response.data.SoNhaThuongTru).change();
+                $('#txtDiaChiThuongTru').val(response.data.SoNhaThuongTru);
                 $('#txtDiaChiThuongTru').attr('disabled', 'disabled');
                 $('#ddlTinhTamTru').val(response.data.IDTinhTT).change();
                 $('#ddlTinhTamTru').attr('disabled', 'disabled');
                 $('#ddlHuyenTamTru').val(response.data.IDHuyenTT).change();
                 $('#ddlHuyenTamTru').attr('disabled', 'disabled');
-                $('#ddlXaTamTru').val(response.data.IDXaTT);
+                $('#ddlXaTamTru').val(response.data.IDXaTT).change();
                 $('#ddlXaTamTru').attr('disabled', 'disabled');
                 $('#txtDiaChiTamTru').val(response.data.SoNhaTamTru);
                 $('#txtDiaChiTamTru').attr('disabled', 'disabled');
@@ -473,19 +524,42 @@ function seeView(id) {
                 $('#uploadFile').attr('disabled', 'disabled');
                 $(':input[type=submit]').prop('disabled', true);
                 //xem đối tượng ưu tiên
+                var html = '';
+                let c =
+                    `<thead>
+                                 
+                    </thead>
+                               <tbody>`;
+
                 $.each(response.idDTUT, function (index, value) {
-                    html = `<p>${value.KieuDoiTuongUuTien}</p>`
-                    $('#iddTUT').append(html);
+                    html += `<tr>
+                             <td>${value.KieuDoiTuongUuTien}</td>
+                             </tr>
+                            `
+                    let b = c+ html+'</tbody>';
+                    $('#iddTUT').html(b);
+                   
                 })
 
+                var html = '';
+                let htmlBegin =
+                              ` <thead> 
+                                    <tr>
+                                        <th>Tên file</th>
+                                        <th></th>
+                                    </tr>
+                               </thead>
+                               <tbody>`;
                 $.each(response.itemFile, function (index, value) {
-                    // html = `<p>${value.TenFile}</p>`
-                    html =
-                        ` <div>
-                        <a href="/Uploads/File/${value.TenFile} " target="_blank">${value.TenFile} </a>
-                    </div>`;
-                    $('#itemFile').append(html);
+
+                    html += `
+                        <tr id="${value.ID}">
+                            <td  ><a href="/Uploads/File/${value.TenFile} " target="_blank">${value.TenFile} </a></td>                       
+                        </tr>
+                        `
                 })
+                let a = htmlBegin + html + '</tbody>';
+                $('#itemFile').html(a);
 
 
             }
@@ -522,7 +596,7 @@ function SearchXT() {
 }
 
 //Duyệt
-function Browser(id) {
+function DuyetHS(id) {
     let result = confirm('Bạn có muốn duyệt hồ sơ')
     if (result == true) {
         $.ajax({
@@ -577,7 +651,7 @@ $('.Checks').click(function () {
 
 
 //Hàm duyệt nhiều hs 1 lúc
-function BrowserAll() {
+function DuyetAll() {
     $('.Checks').each(function () {
         if ($(this).is(':checked') == true) {
             let ketqua = confirm("Bạn có muốn duyệt những hồ sơ này không");
@@ -629,5 +703,16 @@ function DoiTuongUT() {
         x.style.display = "none";
     }
 
+}
+
+function ThongKe() {
+   
+    var a = document.getElementById("example");
+    if (a.style.display == "none") {
+        a.style.display = "block";
+
+    } else {
+        a.style.display = "none";
+    }
 }
 

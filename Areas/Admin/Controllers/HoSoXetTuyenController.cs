@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Models.Dao;
-using Models.EF;
+using Models.Entity;
 
 namespace He_Thong_Tuyen_Sinh_HTHS.Areas.Admin.Controllers
 {
@@ -13,7 +13,7 @@ namespace He_Thong_Tuyen_Sinh_HTHS.Areas.Admin.Controllers
         DoiTuongUuTienDao da = new DoiTuongUuTienDao();
         DiaChiDao dc = new DiaChiDao();
         NguyenVongDao de = new NguyenVongDao();
-        HTTuyenSinhDBcontext db = new HTTuyenSinhDBcontext();
+        HeThongTuyenSinhDDBcontext db = new HeThongTuyenSinhDDBcontext();
         HoSoDuTuyenDao dm = new HoSoDuTuyenDao();
         // GET: Admin/HoSoXetTuyen
         public ActionResult Index(string searchss)

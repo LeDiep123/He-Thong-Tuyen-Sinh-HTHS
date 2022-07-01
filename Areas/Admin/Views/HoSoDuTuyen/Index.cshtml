@@ -1,6 +1,6 @@
 ﻿<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-@using Models.EF;
+@using Models.Entity;
 @using PagedList
 @using PagedList.Mvc
 @using Models.Dto;
@@ -34,7 +34,7 @@
         </div>
         <div class="col-md-12">
             <div class="col-md-6">
-                <button type="button" class="btn btn-primary" data-target="#exampleModal" id="new-registration" onclick="addData()">
+                <button  type="button" class="btn btn-primary"  data-target="#exampleModal" id="new-registration" onclick="ThemMoiHS()">
                     Thêm hồ sơ
                 </button>
 
@@ -44,7 +44,7 @@
                             <div class="modal-header">
                                 <h5 class="modal-title" id="exampleModalLabel"> PHIẾU ĐĂNG KÝ TUYỂN SINH VÀO LỚP 10 THPT</h5>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true" onclick="Close()">&times;</span>
+                                    <span aria-hidden="true" >&times;</span>
                                 </button>
                             </div>
                             <div class="modal-body">
@@ -86,7 +86,11 @@
                                             <div class="col-md-12">
                                                 <p class="Ten" style="text-align:center">PHIẾU ĐĂNG KÝ TUYỂN SINH VÀO LỚP 10 THPT</p>
                                                 <p class="name" style="text-align:center;">(Thí sinh cần đọc kỹ thông tin trước khi điền)</p>
+
                                                 <h2 style="font-size:18px">I.THÔNG TIN CÁ NHÂN</h2>
+                                                <!--<img src="/assets/Images/Avatars/images.png" class="profile-user-img img-responsive img-circle" alt="User profile picture">-->
+
+
                                                 <input id="hdID" type="hidden" value="0" />
                                                 <div class=" col-md-4">
                                                     <div class="col-md-12">
@@ -99,7 +103,7 @@
                                                     </div>
                                                     <div class="col-md-12">
                                                         <label class="space" style="margin-top:12px">Ngày/Tháng/Năm:</label>
-                                                        <input class="form-control" type="text" id="txtNgaySinh" name="birthday">
+                                                        <input class="form-control" type="date" id="txtNgaySinh" name="birthday">
                                                     </div>
                                                     <div class="col-md-12">
                                                         <button id="ddlDTUT" type="button" class="form-control " style="margin-top:40px; width:91%;" data-target="#returnforms" onclick="DoiTuongUT()">
@@ -110,35 +114,27 @@
                                                                 <thead>
 
                                                                 </thead>
-                                                                <tbody>
+                                                                <tbody >
                                                                     @foreach (var item in lstDTUT)
                                                                     {
                                                                         <tr>
                                                                             <td>
-                                                                                <input type="checkbox" value="@item.ID" class="Checkss" id="checkDTUT" />
+                                                                                <input type="checkbox" value="@item.ID" class="Checkss" name="checkDTUT" />
                                                                             </td>
 
                                                                             <td>@item.KieuDoiTuongUuTien</td>
                                                                         </tr>
+                                                                        
                                                                     }
                                                                 </tbody>
 
                                                             </table>
                                                         </div>
 
-                                                        <div id="iddTUT">
+                                                        <table id="iddTUT" class="table table-bordered table-striped " style="width:91%">
 
-                                                        </div>
-                                                        <!--Modal đối tượng ưu tiên-->
-                                                        @*<label class="space" style="margin-top:12px">Đối tượng ưu tiên,khuyến khích:</label>
-                                                            <select class="form-control custom-select-sm md-3 " id="ddlDoiTuongUuTien" >
-
-                                                                @foreach (var item in lstDTUT)
-                                                                {
-
-                                                                    <option value="@item.ID">@item.KieuDoiTuongUuTien</option>
-                                                                }
-                                                            </select>*@
+                                                        </table>
+                                                       
                                                     </div>
 
 
@@ -165,7 +161,7 @@
                                                         <div class="row" style="margin-top:0px;">
                                                             <div class="col-md-4 nopadding">
                                                                 <select class="form-control custom-select-sm md-3" id="ddlTinhThuongTru" onchange="ChangeddlTinhA(0)">
-
+                                                                   
                                                                     @foreach (var item in lstTinh)
                                                                     {
                                                                         <option value="@item.ID">@item.TenDiaChi</option>
@@ -174,6 +170,7 @@
                                                             </div>
                                                             <div class="col-md-4 nopadding">
                                                                 <select class="form-control custom-select-sm md-3" id="ddlHuyenThuongTru" onchange="ChangeddlHuyenA()">
+                                                                    
                                                                     <option selected class="form-control">Huyện thường trú</option>
                                                                 </select>
                                                             </div>
@@ -230,7 +227,8 @@
                                                 </div>
                                                 <div class="col-md-4" style="margin-top:12px" ;>
                                                     <label style="margin-left:54px;">Số điện thoại liên hệ:</label>
-                                                    <input class="form-control" type="number" id="txtSoDienThoaiLienHe" placeholder="Ghi rõ số điện thoại..." style="margin-left:57px;" />
+                                                   
+                                                    <input class="form-control" type="number"  id="txtSoDienThoaiLienHe" placeholder="Ghi rõ số điện thoại..." style="margin-left:57px;" />
                                                     @*</div>*@
                                                 </div>
                                                 <div class="col-md-8" style="margin-left:10px;">
@@ -262,7 +260,7 @@
                                                             </div>
                                                             <div class="col-md-6">
                                                                 <label style="margin-left:55px">Số điện thoại mẹ:</label>
-                                                                <input class="form-control" type="text" id="txtSoDienThoaiMe" name="name" value="" placeholder="Nhập số điện thoại..." style=" margin-left:55px" />
+                                                                <input class="form-control" type="number" id="txtSoDienThoaiMe" name="name" value="" placeholder="Nhập số điện thoại..." style=" margin-left:55px" />
                                                             </div>
                                                             <div class="col-md-6">
                                                                 <label style="margin-top:15px;">Nghề nghiệp bố:</label>
@@ -270,7 +268,7 @@
                                                             </div>
                                                             <div class="col-md-6">
                                                                 <label style="margin-top: 16px; margin-left: 55px;">Số điện thoại bố:</label>
-                                                                <input class="form-control" type="text" id="txtSoDienThoaiBo" name="name" value="" placeholder="Nhập số điện thoại..." style="margin-left: 55px" />
+                                                                <input class="form-control" type="number" id="txtSoDienThoaiBo" name="name" value="" placeholder="Nhập số điện thoại..." style="margin-left: 55px" />
                                                             </div>
                                                         </div>
                                                     </div>
@@ -303,12 +301,11 @@
                                                 <div class="col-md-5">
                                                     <div class="col-md-12">
                                                         <label>File chứa các thông tin liên quan:</label>
-                                                        <input class="form-control" type="file" id="uploadFile" name="file" style="margin-left:20px; max-width:unset;" multiple>
+                                                        <input class="form-control" type="file" id="uploadFile" name="file" style=" max-width:unset;" multiple>
 
-                                                        <div id="itemFile">
+                                                        <table id="itemFile" class="table table-bordered table-striped">
 
-                                                        </div>
-
+                                                        </table>
 
                                                     </div>
                                                 </div>
@@ -340,7 +337,7 @@
                     </div>
                 </div>
                 <!-- Button trigger modal -->
-                <button type="button" class="btn btn-primary" @*data-toggle="modal"*@ data-target="#returnform" onclick="BackAll()">
+                <button type="button" class="btn btn-primary" @*data-toggle="modal"*@ data-target="#returnform" onclick="TraAllHS()">
                     Trả hồ sơ
                 </button>
 
@@ -367,8 +364,8 @@
                     </div>
                 </div>
 
-                <a href="#" class="btn btn-primary" onclick="BrowserAll()">Duyệt hồ sơ</a>
-                <a href="#" class="btn btn-primary" onclick="DeleteAll()">Xóa hồ sơ</a>
+                <a href="#" class="btn btn-primary" onclick="DuyetAll()">Duyệt hồ sơ</a>
+                <a href="#" class="btn btn-primary" onclick="XoaAll()">Xóa hồ sơ</a>
 
             </div>
             <div class="col-md-3"></div>
@@ -425,6 +422,7 @@
 
                                     @*TODO: đọc hiểu*@
                                     @string.Join(", ", item.DanhSachDTUT.Select(s => s.KieuDoiTuongUuTien))
+                                    
                                 </td>
 
 
@@ -437,31 +435,27 @@
 
                                 <td>
 
-                                    <button style='font-size: 12px ' onclick="seeView(@item.ID)"> <i class="fa-solid fa-eye" ></i></button>
-                                    @*<a href="#" style="margin-left:10px" onclick="seeView(@item.ID)"> <u>Xem</u> </a>*@
-                                    <button style='font-size: 12px' onclick="Deldelete(@item.ID)"><i class='fas fa-trash-alt'></i></button>
+                                    <button style='font-size: 12px ' data-toggle="tooltip" title="Xem" onclick="XemHS(@item.ID)">
+                                        <i class="fa-solid fa-eye"></i>
+                                    </button>
 
-                                    @*<a href="#" style="margin-left:10px" onclick="Deldelete(@item.ID)"> <u>Xóa</u></a>*@
+                                    <button style='font-size: 12px' data-toggle="tooltip" title="Xóa" onclick="XoaHS(@item.ID)">
+                                        <i class='fas fa-trash-alt'></i>
+                                    </button>
 
 
 
-                                    @*<a href="#" style="margin-left:10px" id="txtEdits" onclick="Edit(@item.ID)"><u>Sửa</u> </a>*@
-                                    <button style='font-size: 12px ' onclick="Edit(@item.ID)"><i class='fas fa-wrench'></i></button>
+                                    <button style='font-size: 12px' data-toggle="tooltip" title="Sửa" onclick="SuaHS(@item.ID)">
+                                        <i class='fas fa-wrench'></i>
+                                    </button>
 
-                                    <button style='font-size: 12px ' onclick="Browser(@item.ID)">
+                                    <button style='font-size: 12px ' data-toggle="tooltip" title="Duyệt" onclick="DuyetHS(@item.ID)">
                                         <i class="fa-solid fa-file-circle-check"></i>
                                     </button>
-                                    @*<a href="#" style="margin-left:10px" id="txtEdits" onclick="Browser(@item.ID)">
-                                            <u>
-                                                @{ string mkk = ""; if (item.TrangThai == 3) { mkk = "Hủy Duyệt"; } else if (item.TrangThai == 1) { mkk = "Duyệt"; }
-                                                }
-                                                @mkk
 
-                                            </u>
-                                        </a>*@
 
-                                    @*<a href="#" style="margin-left:10px" id="txtEdits" onclick="Back(@item.ID)"><u>Trả lại</u> </a>*@
-                                    <button style='font-size: 12px;' onclick="Back(@item.ID)">
+
+                                    <button style='font-size: 12px;' data-toggle="tooltip" title="Trả lại" onclick="TraHS(@item.ID)">
                                         <i class="fa-solid fa-rotate-left"></i>
                                     </button>
 
@@ -475,45 +469,46 @@
 
                 </tbody>
             </table>
-            <div>
-                <table id="example2" class="table table-bordered table-hover" style="margin-top:50px">
-                    <thead>
-                        <tr>
-                            <td><b>Đối tượng ưu tiên</b></td>
-                            <td style="width:90%"><b>Số lượng</b></td>
-                        </tr>
-                    </thead>
-                    <tbody>
 
-                        @foreach (var s in lst)
-                        {
-
-
-                            if (s.TenKieuDoiTuongUuTien != null)
-                            {
-                                <tr>
-                                    <td>
-                                        @s.TenKieuDoiTuongUuTien
-                                    </td>
-                                    <td>@s.SoLuongHocSinh</td>
-
-
-
-                                </tr>
-                            }
-
-                        }
-
-
-                    </tbody>
-                </table>
-            </div>
             <br />
 
             @Html.PagedListPager(Model, page => Url.Action("Index", new { ViewBag.Search, page }))
 
         </div>
+        <div>
+            <button type="button" class="btn btn-primary" style="margin-left: 10px; background-color: #3c8dbc" data-target="#returnforms" onclick="ThongKe()">Thống kê đối tượng ưu tiên</button>
+        </div>
 
+        <div>
+            <table id="example" class="table table-bordered table-hover" style="margin-top:50px; display: block;">
+                <thead>
+                    <tr>
+                        <td><b>Đối tượng ưu tiên</b></td>
+                        <td style="width:70%"><b>Số lượng</b></td>
+                    </tr>
+                </thead>
+                <tbody>
+
+                    @foreach (var s in lst)
+                    {
+
+                        if (s.TenKieuDoiTuongUuTien != null)
+                        {
+                            <tr>
+                                <td>
+                                    @s.TenKieuDoiTuongUuTien
+                                </td>
+
+                                <td>@s.SoLuong</td>
+                            </tr>
+                        }
+ 
+                    }
+
+
+                </tbody>
+            </table>
+        </div>
         @section scripts {
             <script src="~/Scripts/AdminJS/ChucNang.js"></script>
             <script src="~/Scripts/AdminJS/ThongTin.js"></script>
