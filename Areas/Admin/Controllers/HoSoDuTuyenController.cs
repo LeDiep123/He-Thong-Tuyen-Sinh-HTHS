@@ -63,11 +63,11 @@ namespace He_Thong_Tuyen_Sinh_HTHS.Areas.Admin.Controllers
 
 
             //gom những đối tượng ưu tiên vào 1 hàng
-            //var listData = dm.GetAllHocSinh_DTUT(search = "") ;
-            var result = listHocSinhDao.GroupBy(s => s.IdDTUT, (key, group) => new BaoCaoSoLuongTheoDTUT_Dto()
+            var listData = dm.GetAllHocSinh_DTUT() ;
+            var result = listData.GroupBy(s => s.IdDTUT, (key, group) => new BaoCaoSoLuongTheoDTUT_Dto()
             {
                 ID = key,
-                TenKieuDoiTuongUuTien = String.Join(", ",group.Select(s=>s.KieuDoiTuongUuTien)),
+                TenKieuDoiTuongUuTien = /*String.Join(", ",group.Select(s=>s.KieuDoiTuongUuTien)),*/ group.First().KieuDoiTuongUuTien,  
                 //join(", ", item.DanhSachDTUT.Select(s => s.KieuDoiTuongUuTien)
                 SoLuong = group.Count()
             }).ToList();
